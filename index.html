@@ -1,26 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Animated flower</title>
-    <link rel="stylesheet" href="styles.css" />
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reproductor de Música y Animación de Flores</title>
+  <style>
+    body {
+      text-align: center;
+      padding-top: 50px;
+      position: relative;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden; /* Agregado para evitar el desbordamiento */
+      background: linear-gradient(to top, #2c0e22, #000005);
+    }
+    #overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+    #content, #additionalContent {
+      display: none; /* Mantener oculto el contenido */
+    }
+    #flowerMessage {
+      font-size: 24px; /* Tamaño del texto */
+      margin-bottom: 20px; /* Espacio entre el mensaje y las flores */
+    }
+    .rain {
+      height: 0.5rem;
+      width: 0.15rem;
+      background-color: rgba(255, 255, 255, 0.432);
+      position: absolute;
+      top: -10px;
+      border-radius: 45%;
+      z-index: 2;
+      animation: rain-drop 1s linear forwards;
+    }
+    @keyframes rain-drop {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(110vh); }
+    }
+    .flower {
+      position: relative;
+      display: none;
+    }
+    /* (Aquí va el resto de tu CSS de flores) */
+  </style>
+  <script>
+    function enableAudio() {
+      var audio = document.getElementById("audioPlayer");
+      audio.play();
+      document.getElementById("overlay").style.display = "none"; // Ocultar el overlay
+      document.getElementById("content").style.display = "block"; // Mostrar el contenido
+      document.getElementById("additionalContent").style.display = "block"; // Mostrar el contenido adicional
+      audio.controls = false; // Ocultar los controles
+      document.getElementById("playButton").style.display = "none"; // Ocultar el botón
+    }
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap"
-      rel="stylesheet" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap"
-      rel="stylesheet" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap"
-      rel="stylesheet" />
-  </head>
+    document.addEventListener("DOMContentLoaded", () => {
+      const flower = document.querySelector("#animation-flower");
+      // Mostrar las flores después de 2 segundos
+      setTimeout(() => {
+        flower.style.display = "block"; // Cambiado a "block" para mostrar correctamente
+      }, 2000);
+    });
 
-  <body class="not-loaded">
-    <h1>Flowers for you!</h1>
-    <p class="my-name">Code by harvey</p>
-    <div class="rain"></div>
+    function createRaindrop() {
+      const body = document.querySelector("body");
+      const xPosition = Math.random() * window.innerWidth;
+      const delay = Math.random() * 5;
+      const duration = Math.random() * 2 + 2;
+
+      const rainDrop = document.createElement("div");
+      rainDrop.className = "rain";
+      rainDrop.style.left = `${xPosition}px`;
+      rainDrop.style.animationDelay = `${delay}s`;
+      rainDrop.style.animationDuration = `${duration}s`;
+      body.appendChild(rainDrop);
+
+      setTimeout(() => {
+        rainDrop.remove();
+      }, (duration + 1) * 1000);
+    }
+
+    setInterval(createRaindrop, 300); // Ajustar la frecuencia de creación de gotas
+  </script>
+</head>
+<body>
+
+  <div id="overlay">
+    <button id="playButton" onclick="enableAudio()">Abrir</button>
+  </div>
+  
+  <div id="content">
+    <audio id="audioPlayer" loop>
+      <source src="https://dl.dropbox.com/scl/fi/h0t4mlp85xcyh0eckgn45/TikSave.io_7379010256866708741.mp3.m4a?rlkey=d9i93o1egkklbjx6f3qhan81c&st=eqxrvcyr&dl=0" type="audio/mpeg">
+      Tu navegador no soporta el reproductor de audio.
+    </audio>
+  </div>
+
+  <div id="additionalContent">
+    <div id="flowerMessage"></div>
     <div class="flower" id="animation-flower">
       <div class="f-wrapper">
         <div class="flower__line"></div>
@@ -32,11 +120,9 @@
           <div class="flower__leaf flower__leaf--5"></div>
           <div class="flower__leaf flower__leaf--6"></div>
           <div class="flower__leaf flower__leaf--7"></div>
-          <div
-            class="flower__leaf flower__leaf--8 flower__fall-down--yellow"></div>
+          <div class="flower__leaf flower__leaf--8 flower__fall-down--yellow"></div>
         </div>
       </div>
-
       <div class="f-wrapper f-wrapper--2">
         <div class="flower__line"></div>
         <div class="f">
@@ -47,11 +133,9 @@
           <div class="flower__leaf flower__leaf--5"></div>
           <div class="flower__leaf flower__leaf--6"></div>
           <div class="flower__leaf flower__leaf--7"></div>
-          <div
-            class="flower__leaf flower__leaf--8 flower__fall-down--pink"></div>
+          <div class="flower__leaf flower__leaf--8 flower__fall-down--pink"></div>
         </div>
       </div>
-
       <div class="f-wrapper f-wrapper--3">
         <div class="flower__line"></div>
         <div class="f">
@@ -62,13 +146,12 @@
           <div class="flower__leaf flower__leaf--5"></div>
           <div class="flower__leaf flower__leaf--6"></div>
           <div class="flower__leaf flower__leaf--7"></div>
-          <div
-            class="flower__leaf flower__leaf--8 flower__fall-down--purple"></div>
+          <div class="flower__leaf flower__leaf--8 flower__fall-down--purple"></div>
         </div>
       </div>
       <div class="flower__glass"></div>
     </div>
+  </div>
 
-    <script src="script.js"></script>
-  </body>
+</body>
 </html>
