@@ -11,8 +11,6 @@
       position: relative;
       height: 100vh;
       margin: 0;
-      overflow: hidden; /* Agregado para evitar el desbordamiento */
-      background: linear-gradient(to top, #2c0e22, #000005);
     }
     #overlay {
       position: absolute;
@@ -34,25 +32,6 @@
       font-size: 24px; /* Tamaño del texto */
       margin-bottom: 20px; /* Espacio entre el mensaje y las flores */
     }
-    .rain {
-      height: 0.5rem;
-      width: 0.15rem;
-      background-color: rgba(255, 255, 255, 0.432);
-      position: absolute;
-      top: -10px;
-      border-radius: 45%;
-      z-index: 2;
-      animation: rain-drop 1s linear forwards;
-    }
-    @keyframes rain-drop {
-      from { transform: translateY(-100%); }
-      to { transform: translateY(110vh); }
-    }
-    .flower {
-      position: relative;
-      display: none;
-    }
-    /* (Aquí va el resto de tu CSS de flores) */
   </style>
   <script>
     function enableAudio() {
@@ -64,34 +43,6 @@
       audio.controls = false; // Ocultar los controles
       document.getElementById("playButton").style.display = "none"; // Ocultar el botón
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const flower = document.querySelector("#animation-flower");
-      // Mostrar las flores después de 2 segundos
-      setTimeout(() => {
-        flower.style.display = "block"; // Cambiado a "block" para mostrar correctamente
-      }, 2000);
-    });
-
-    function createRaindrop() {
-      const body = document.querySelector("body");
-      const xPosition = Math.random() * window.innerWidth;
-      const delay = Math.random() * 5;
-      const duration = Math.random() * 2 + 2;
-
-      const rainDrop = document.createElement("div");
-      rainDrop.className = "rain";
-      rainDrop.style.left = `${xPosition}px`;
-      rainDrop.style.animationDelay = `${delay}s`;
-      rainDrop.style.animationDuration = `${duration}s`;
-      body.appendChild(rainDrop);
-
-      setTimeout(() => {
-        rainDrop.remove();
-      }, (duration + 1) * 1000);
-    }
-
-    setInterval(createRaindrop, 300); // Ajustar la frecuencia de creación de gotas
   </script>
 </head>
 <body>
@@ -153,5 +104,6 @@
     </div>
   </div>
 
+  <script src="script.js"></script> <!-- Si necesitas un script adicional -->
 </body>
 </html>
