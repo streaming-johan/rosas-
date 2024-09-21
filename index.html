@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reproductor de Música y Animación de Flores</title>
+  <style>
+    body {
+      text-align: center;
+      padding-top: 50px;
+      position: relative;
+      height: 100vh;
+      margin: 0;
+    }
+    #overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+    #content, #additionalContent {
+      display: none; /* Mantener oculto el contenido */
+    }
+    #flowerMessage {
+      font-size: 24px; /* Tamaño del texto */
+      margin-bottom: 20px; /* Espacio entre el mensaje y las flores */
+    }
+  </style>
+  <script>
+    function enableAudio() {
+      var audio = document.getElementById("audioPlayer");
+      audio.play();
+      document.getElementById("overlay").style.display = "none"; // Ocultar el overlay
+      document.getElementById("content").style.display = "block"; // Mostrar el contenido
+      document.getElementById("additionalContent").style.display = "block"; // Mostrar el contenido adicional
+      audio.controls = false; // Ocultar los controles
+      document.getElementById("playButton").style.display = "none"; // Ocultar el botón
+    }
+  </script>
+</head>
+<body>
+
+  <div id="overlay">
+    <button id="playButton" onclick="enableAudio()">Abrir</button>
+  </div>
+  
+  <div id="content">
+    <audio id="audioPlayer" loop>
+      <source src="https://dl.dropbox.com/scl/fi/h0t4mlp85xcyh0eckgn45/TikSave.io_7379010256866708741.mp3.m4a?rlkey=d9i93o1egkklbjx6f3qhan81c&st=eqxrvcyr&dl=0" type="audio/mpeg">
+      Tu navegador no soporta el reproductor de audio.
+    </audio>
+  </div>
+
+  <div id="additionalContent">
+    <div id="flowerMessage"></div>
+    <div class="flower" id="animation-flower">
+      <div class="f-wrapper">
+        <div class="flower__line"></div>
+        <div class="f">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__leaf flower__leaf--5"></div>
+          <div class="flower__leaf flower__leaf--6"></div>
+          <div class="flower__leaf flower__leaf--7"></div>
+          <div class="flower__leaf flower__leaf--8 flower__fall-down--yellow"></div>
+        </div>
+      </div>
+      <div class="f-wrapper f-wrapper--2">
+        <div class="flower__line"></div>
+        <div class="f">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__leaf flower__leaf--5"></div>
+          <div class="flower__leaf flower__leaf--6"></div>
+          <div class="flower__leaf flower__leaf--7"></div>
+          <div class="flower__leaf flower__leaf--8 flower__fall-down--pink"></div>
+        </div>
+      </div>
+      <div class="f-wrapper f-wrapper--3">
+        <div class="flower__line"></div>
+        <div class="f">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__leaf flower__leaf--5"></div>
+          <div class="flower__leaf flower__leaf--6"></div>
+          <div class="flower__leaf flower__leaf--7"></div>
+          <div class="flower__leaf flower__leaf--8 flower__fall-down--purple"></div>
+        </div>
+      </div>
+      <div class="flower__glass"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script> <!-- Si necesitas un script adicional -->
+</body>
+</html>
